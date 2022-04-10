@@ -3,6 +3,38 @@
 model::King::King(Colour colour, std::pair<int, int> pos) : Piece(colour, pos) {}
 
 
+bool model::King::isPuttingKingInCheck(int kCol, int kRow)
+{
+    int currCol = _currPos.first;
+    int currRow = _currPos.second; 
+
+    return (currCol - 1 == kCol && currRow == kRow) ||
+        (currCol + 1 == kCol && currRow == kRow) ||
+        (currCol == kCol && currRow - 1 == kRow) ||
+        (currCol == kCol && currRow + 1 == kRow) || 
+        (currCol + 1 == kCol && currRow + 1 == kRow) ||
+        (currCol + 1 == kCol && currRow - 1 == kRow) ||
+        (currCol - 1 == kCol && currRow - 1 == kRow) ||
+        (currCol - 1 == kCol && currRow + 1 == kRow);
+    
+}
+
+
+bool model::King::isPuttingSelfInCheck(int col, int row, const Board& board)
+{
+    for (int i = 0; i < 8; i++) {
+        for (int j = 0; j < 8; j++) {
+
+            if (const std::unique_ptr<Piece>& piece = board.getPiece(i, j)) {
+
+                if (piece->isPuttingKingInCheck(col, row))
+                    return true;
+            }
+        }
+    }
+}
+
+
 bool model::King::isMoveValid(int col, int row, const Board& board)
 {
     if (!Piece::isMoveValid(col, row, board))
@@ -11,12 +43,8 @@ bool model::King::isMoveValid(int col, int row, const Board& board)
     int currCol = _currPos.first;
     int currRow = _currPos.second;
 
-    // TODO check if king is in check at that position
-        // probably do that check on the board. 
-        // since we have to check all other pieces pretty much
-    
-    // TODO check if it gets within one square of enemy king.
-
+    if (isPuttingSelfInCheck(col, row, board))
+        return false;
 
     return (currCol - 1 == col && currRow == row) ||
         (currCol + 1 == col && currRow == row) ||

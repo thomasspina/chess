@@ -2,6 +2,8 @@
 
 #include <memory>
 
+#include "piece.hpp"
+
 namespace model
 {
     class Board 
