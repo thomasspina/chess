@@ -1,10 +1,12 @@
 #include "piece.hpp"
 
-class King : virtual public Piece 
+namespace model 
 {
-public:
-    
-    bool isInCheck() const { return inCheck; };
-private:
-    bool inCheck;
-};
+    class King : public Piece 
+    {
+    public:
+        King(Colour colour, std::pair<int, int> pos);
+
+        bool isMoveValid(int column, int row, const Board& board) override;
+    };
+}
