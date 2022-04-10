@@ -16,7 +16,6 @@ bool model::King::isPuttingKingInCheck(int kCol, int kRow)
         (currCol + 1 == kCol && currRow - 1 == kRow) ||
         (currCol - 1 == kCol && currRow - 1 == kRow) ||
         (currCol - 1 == kCol && currRow + 1 == kRow);
-    
 }
 
 
