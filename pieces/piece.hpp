@@ -21,7 +21,7 @@ namespace model
         void move(int col, int row);
 
         virtual bool isMoveValid(int col, int row, const Board& board);
-        virtual bool isPuttingKingInCheck(int kCol, int kRow);
+        virtual bool isPuttingKingInCheck(int kCol, int kRow, const Board& board);
 
         Colour getColour() const;
         std::pair<int, int> getPos() const;

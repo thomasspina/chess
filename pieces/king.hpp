@@ -8,7 +8,7 @@ namespace model
         King(Colour colour, std::pair<int, int> pos);
 
         bool isMoveValid(int column, int row, const Board& board) override;
-        bool isPuttingKingInCheck(int kCol, int kRow) override;
+        bool isPuttingKingInCheck(int kCol, int kRow, const Board& board) override;
         bool isPuttingSelfInCheck(int col, int row, const Board& board);
     };
 }

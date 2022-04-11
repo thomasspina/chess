@@ -3,7 +3,7 @@
 model::King::King(Colour colour, std::pair<int, int> pos) : Piece(colour, pos) {}
 
 
-bool model::King::isPuttingKingInCheck(int kCol, int kRow)
+bool model::King::isPuttingKingInCheck(int kCol, int kRow, const Board& board)
 {
     int currCol = _currPos.first;
     int currRow = _currPos.second; 
@@ -26,7 +26,7 @@ bool model::King::isPuttingSelfInCheck(int col, int row, const Board& board)
 
             if (const std::unique_ptr<Piece>& piece = board.getPiece(i, j)) {
 
-                if (piece->isPuttingKingInCheck(col, row))
+                if (piece->getColour() != _colour && piece->isPuttingKingInCheck(col, row, board))
                     return true;
             }
         }

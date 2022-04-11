@@ -2,6 +2,7 @@
 
 #include "piece.hpp"
 
+
 model::Piece::Piece(Colour colour, std::pair<int, int> pos) : _colour(colour), _currPos(pos) {}
 
 

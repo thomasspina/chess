@@ -4,10 +4,10 @@
 
 namespace model
 {
-    class Rook : public Piece 
+    class Bishop : public Piece 
     {
     public:
-        Rook(Colour colour, std::pair<int, int> pos);
+        Bishop(Colour colour, std::pair<int, int> pos);
 
         bool isMoveValid(int col, int row, const Board& board) override;
         bool isPuttingKingInCheck(int kCol, int kRow, const Board& board) override;

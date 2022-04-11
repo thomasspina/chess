@@ -16,8 +16,9 @@ bool model::Rook::isMoveValid(int col, int row, const Board& board)
     if (currCol == col) {
         int i = currRow < row ? currRow : row;
         int lim = currRow < row ? row : currRow;
-    
-        for (i; i <= lim; i++) {
+
+        i++;
+        for (; i < lim; i++) {
             if (board.getPiece(col, i) != nullptr)
                 return false;
         }
@@ -27,8 +28,9 @@ bool model::Rook::isMoveValid(int col, int row, const Board& board)
     else if (currRow == row) {
         int i = currCol < col ? currCol : col;
         int lim = currCol < col ? col : currCol;
-    
-        for (i; i <= lim; i++) {
+
+        i++;
+        for (; i < lim; i++) {
             if (board.getPiece(i, row) != nullptr)
                 return false;
         }
@@ -39,7 +41,7 @@ bool model::Rook::isMoveValid(int col, int row, const Board& board)
 }
 
 
-bool model::Rook::isPuttingKingInCheck(int kCol, int kRow)
-{
-
+bool model::Rook::isPuttingKingInCheck(int kCol, int kRow, const Board& board) 
+{ 
+    return isMoveValid(kCol, kRow, board); 
 }
