@@ -1,13 +1,15 @@
 #pragma once
 
 #include "piece.hpp"
+#include "bishop.hpp"
+#include "rook.hpp"
 
 namespace model
 {
-    class Rook : virtual public Piece 
+    class Queen : virtual public Piece, public Rook, public Bishop
     {
     public:
-        Rook(Colour colour, std::pair<int, int> pos);
+        Queen(Colour colour, std::pair<int, int> pos);
 
         bool isMoveValid(int col, int row, const Board& board) override;
         bool isPuttingKingInCheck(int kCol, int kRow, const Board& board) override;

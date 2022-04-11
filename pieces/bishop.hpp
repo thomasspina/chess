@@ -4,7 +4,7 @@
 
 namespace model
 {
-    class Bishop : public Piece 
+    class Bishop : virtual public Piece 
     {
     public:
         Bishop(Colour colour, std::pair<int, int> pos);
