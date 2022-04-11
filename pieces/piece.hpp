@@ -18,7 +18,7 @@ namespace model
         Piece(Colour colour, std::pair<int, int> pos);
         virtual ~Piece() = default;
 
-        void move(int col, int row);
+        virtual void move(int col, int row);
 
         virtual bool isMoveValid(int col, int row, const Board& board);
         virtual bool isPuttingKingInCheck(int kCol, int kRow, const Board& board);
