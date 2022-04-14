@@ -22,5 +22,3 @@ namespace model
         bool _markedForDeath = false; // used to determine weather they got killed by en passant
     };
 }
-
-// TODO how tf to do promotion?

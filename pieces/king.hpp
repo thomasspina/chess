@@ -2,6 +2,8 @@
 
 namespace model 
 {
+    struct TooManyKings {};
+
     class King : public Piece 
     {
     public:
@@ -10,5 +12,7 @@ namespace model
         bool isMoveValid(int column, int row, const Board& board) override;
         bool isPuttingKingInCheck(int kCol, int kRow, const Board& board) override;
         bool isPuttingSelfInCheck(int col, int row, const Board& board);
+    private:
+        static int kingCounter;
     };
 }

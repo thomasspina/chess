@@ -1,6 +1,15 @@
 #include "king.hpp"
 
-model::King::King(Colour colour, std::pair<int, int> pos) : Piece(colour, pos) {}
+int model::King::kingCounter = 0;
+
+
+model::King::King(Colour colour, std::pair<int, int> pos) : Piece(colour, pos) 
+{
+    if (kingCounter == 2) 
+        throw TooManyKings();
+
+    kingCounter++;
+}
 
 
 bool model::King::isPuttingKingInCheck(int kCol, int kRow, const Board& board)
