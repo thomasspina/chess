@@ -15,8 +15,11 @@ namespace model
 
         int getMoves() const;
         void incrementMoves();
+        bool isMarkedForDeath() const;
     private:
+        bool _movedTwo = false; // used to check whether he moved 2 squares in the begining
         int _nMoves = 0;
+        bool _markedForDeath = false; // used to determine weather they got killed by en passant
     };
 }
 
