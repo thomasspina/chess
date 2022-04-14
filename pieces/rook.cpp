@@ -1,6 +1,6 @@
 #include "rook.hpp"
 
-model::Rook::Rook(Colour colour, std::pair<int, int> pos) : Piece(colour, pos) {}
+model::Rook::Rook(const Colour& colour, const std::pair<int, int>& pos) : Piece(colour, pos) {}
 
 
 bool model::Rook::isMoveValid(int col, int row, const Board& board)

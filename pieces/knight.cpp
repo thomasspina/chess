@@ -1,6 +1,6 @@
 #include "knight.hpp"
 
-model::Knight::Knight(Colour colour, std::pair<int, int> pos) : Piece(colour, pos) {}
+model::Knight::Knight(const Colour& colour, const std::pair<int, int>& pos) : Piece(colour, pos) {}
 
 
 bool model::Knight::isMoveValid(int col, int row, const Board& board)

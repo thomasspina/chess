@@ -1,6 +1,15 @@
 #include "pawn.hpp"
 
-model::Pawn::Pawn(Colour colour, std::pair<int, int> pos) : Piece(colour, pos) {}
+model::Pawn::Pawn(const Colour& colour, const std::pair<int, int>& pos) : Piece(colour, pos) 
+{
+    if ((pos.second == 6 && colour == model::Colour::WHITE) ||
+        (pos.second == 1 && colour == model::Colour::BLACK)) {
+        _nMoves = 0;
+    } 
+    else {
+        _nMoves = 1;
+    }
+}
 
 
 int model::Pawn::getMoves() const { return _nMoves; }
@@ -19,7 +28,8 @@ void model::Pawn::move(int col, int row)
 }
 
 
-
+// TODO pawn moves different if on black side of the board
+// ALSO en passant is if he moved 2 last turn
 bool model::Pawn::isMoveValid(int col, int row, const Board& board)
 {
     if (!Piece::isMoveValid(col, row, board))

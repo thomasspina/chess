@@ -2,7 +2,7 @@
 #include "bishop.hpp"
 #include "rook.hpp"
 
-model::Queen::Queen(Colour colour, std::pair<int, int> pos) 
+model::Queen::Queen(const Colour& colour, const std::pair<int, int>& pos) 
     : Piece(colour, pos), Rook(colour, pos), Bishop(colour, pos)
 {}
 

@@ -3,7 +3,7 @@
 #include "piece.hpp"
 
 
-model::Piece::Piece(Colour colour, std::pair<int, int> pos) : _colour(colour), _currPos(pos) {}
+model::Piece::Piece(const Colour& colour, const std::pair<int, int>& pos) : _colour(colour), _currPos(pos) {}
 
 
 model::Colour model::Piece::getColour() const { return _colour; }

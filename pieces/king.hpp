@@ -7,7 +7,8 @@ namespace model
     class King : public Piece 
     {
     public:
-        King(Colour colour, std::pair<int, int> pos);
+        King(const Colour& colour, const std::pair<int, int>&pos);
+        ~King();
 
         bool isMoveValid(int column, int row, const Board& board) override;
         bool isPuttingKingInCheck(int kCol, int kRow, const Board& board) override;

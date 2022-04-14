@@ -2,7 +2,7 @@
 
 #include <math.h>
 
-model::Bishop::Bishop(Colour colour, std::pair<int, int> pos) : Piece(colour, pos) {}
+model::Bishop::Bishop(const Colour& colour, const std::pair<int, int>& pos) : Piece(colour, pos) {}
 
 
 bool model::Bishop::isMoveValid(int col, int row, const Board& board)

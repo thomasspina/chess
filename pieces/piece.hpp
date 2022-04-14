@@ -15,7 +15,7 @@ namespace model
     class Piece 
     {
     public:
-        Piece(Colour colour, std::pair<int, int> pos);
+        Piece(const Colour& colour, const std::pair<int, int>& pos);
         virtual ~Piece() = default;
 
         virtual void move(int col, int row);
