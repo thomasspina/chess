@@ -1,4 +1,5 @@
 #include "pawn.hpp"
+#include "game.hpp"
 
 model::Pawn::Pawn(const Colour& colour, const std::pair<int, int>& pos) : Piece(colour, pos) {}
 
@@ -9,7 +10,6 @@ bool model::Pawn::isMarkedForDeath() const { return _markedForDeath; }
 void model::Pawn::move(int col, int row) 
 {   
     Piece::move(col, row);
-    _movedLast = true;
 }
 
 
@@ -60,8 +60,10 @@ bool model::Pawn::isMoveValid(int col, int row, const Board& board)
     // check for en passant
     if ((currCol + 1 == col || currCol - 1 == col) && currRow + moveDir == row) {
         if (Pawn* piece = dynamic_cast<Pawn*>(board.getPiece(col, currRow).get())) {
-
-            if (piece->_movedTwo && piece->_movedLast) {
+            
+            // check whether the pawn adjacent moved two and is the last piece that moved
+            if (piece->_movedTwo && 
+                model::Game::runningGame.getLastMovedPiece()->getPos() == piece->getPos()) {
                 piece->_markedForDeath = true;
                 return true;
             }

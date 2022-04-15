@@ -18,7 +18,6 @@ namespace model
         void unsetMovedLast(); // if another piece has moved then moved last is unset
     private:
         bool _movedTwo = false; // used to check whether he moved 2 squares in the begining
-        bool _movedLast = false; // used for en passant to check whether the piece is valid
         bool _markedForDeath = false; // used to determine weather they got killed by en passant
     };
 }
