@@ -1,21 +1,6 @@
 #include "pawn.hpp"
 
-model::Pawn::Pawn(const Colour& colour, const std::pair<int, int>& pos) : Piece(colour, pos) 
-{
-    if ((pos.second == 6 && colour == model::Colour::WHITE) ||
-        (pos.second == 1 && colour == model::Colour::BLACK)) {
-        _nMoves = 0;
-    } 
-    else {
-        _nMoves = 1;
-    }
-}
-
-
-int model::Pawn::getMoves() const { return _nMoves; }
-
-
-void model::Pawn::incrementMoves() { _nMoves++; }
+model::Pawn::Pawn(const Colour& colour, const std::pair<int, int>& pos) : Piece(colour, pos) {}
 
 
 bool model::Pawn::isMarkedForDeath() const { return _markedForDeath; }
@@ -24,12 +9,10 @@ bool model::Pawn::isMarkedForDeath() const { return _markedForDeath; }
 void model::Pawn::move(int col, int row) 
 {   
     Piece::move(col, row);
-    _nMoves++;
+    _movedLast = true;
 }
 
 
-// TODO pawn moves different if on black side of the board
-// ALSO en passant is if he moved 2 last turn
 bool model::Pawn::isMoveValid(int col, int row, const Board& board)
 {
     if (!Piece::isMoveValid(col, row, board))
@@ -37,27 +20,48 @@ bool model::Pawn::isMoveValid(int col, int row, const Board& board)
     
     int currCol = _currPos.first;
     int currRow = _currPos.second;
+    int moveDir;
+    bool hasMoved;
 
-    if (_nMoves == 0 && currCol == col && currRow + 2 == row) {
-        if (board.getPiece(col, row) == nullptr && board.getPiece(col, row - 1) == nullptr)
+    // set direction of move (down or up the board) and check if in original pos
+    if (_colour == model::Colour::WHITE) {
+        if (currRow == 6) 
+            hasMoved = false;
+        else 
+            hasMoved = true;
+        moveDir = -1;
+    }   
+    else {
+        if (currRow == 1)
+            hasMoved = false;
+        else
+            hasMoved = true;
+        moveDir = 1;
+    }
+
+    // make a jump of two
+    if (!hasMoved && currCol == col && currRow + (2 * moveDir) == row) {
+        if (board.getPiece(col, row) == nullptr && board.getPiece(col, row + (-1 * moveDir)) == nullptr)
             return true;
     }
 
-    if ((currCol + 1 == col || currCol - 1 == col) && currRow + 1 == row) {
+    // take a piece diagonally 
+    if ((currCol + 1 == col || currCol - 1 == col) && currRow + moveDir == row) {
         if (board.getPiece(col, row) != nullptr)
             return true;
     }
 
-    if (currCol == col && currRow + 1 == row) {
+    // move one space in front
+    if (currCol == col && currRow + moveDir == row) {
         if (board.getPiece(col, row) == nullptr)
             return true;
     }
 
-    // two ifs below are for en passant
-    if (currCol + 1 == col && currRow + 1 == row) {
+    // check for en passant
+    if ((currCol + 1 == col || currCol - 1 == col) && currRow + moveDir == row) {
         if (Pawn* piece = dynamic_cast<Pawn*>(board.getPiece(col, currRow).get())) {
 
-            if (piece->_movedTwo && piece->_nMoves == 1) {
+            if (piece->_movedTwo && piece->_movedLast) {
                 piece->_markedForDeath = true;
                 return true;
             }
@@ -65,19 +69,9 @@ bool model::Pawn::isMoveValid(int col, int row, const Board& board)
         }
     }
 
-    if (currCol - 1 == col && currRow + 1 == row) {
-        if (Pawn* piece = dynamic_cast<Pawn*>(board.getPiece(col, currRow).get())) {
-
-            if (piece->_movedTwo && piece->_nMoves == 1) {
-                piece->_markedForDeath = true;
-                return true;
-            }
-        }
-    }
-
-
     return false;
 }
+
 
 bool model::Pawn::isPuttingKingInCheck(int kCol, int kRow, const Board& board)
 {

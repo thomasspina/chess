@@ -2,6 +2,4 @@
 #include "king.hpp"
 
 
-model::Board::Board() {
-    
-}
+model::Board::Board() {}
