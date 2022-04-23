@@ -2,7 +2,7 @@
 
 #include <utility>
 
-#include "../board/board.hpp"
+#include "board.hpp"
 
 namespace model 
 {

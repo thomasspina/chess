@@ -2,10 +2,11 @@
 
 #include <memory>
 
-#include "piece.hpp"
 
 namespace model
 {
+    class Piece;
+
     class Board 
     {
     public:
