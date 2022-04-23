@@ -26,5 +26,7 @@ bool model::Piece::isMoveValid(int col, int row, const Board& board)
         if (piece->getColour() == this->getColour())
             return false;
     }
+
+    return true;
 }
 

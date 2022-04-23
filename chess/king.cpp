@@ -17,6 +17,9 @@ model::King::~King() { kingCounter--; }
 
 bool model::King::isPuttingKingInCheck(int kCol, int kRow, const Board& board)
 {
+    if (!Piece::isMoveValid(kCol, kRow, board))
+        return false;
+
     int currCol = _currPos.first;
     int currRow = _currPos.second; 
 
@@ -43,6 +46,8 @@ bool model::King::isPuttingSelfInCheck(int col, int row, const Board& board)
             }
         }
     }
+
+    return false;
 }
 
 

@@ -62,8 +62,9 @@ bool model::Pawn::isMoveValid(int col, int row, const Board& board)
         if (Pawn* piece = dynamic_cast<Pawn*>(board.getPiece(col, currRow).get())) {
             
             // check whether the pawn adjacent moved two and is the last piece that moved
-            if (piece->_movedTwo && 
-                model::Game::runningGame.getLastMovedPiece()->getPos() == piece->getPos()) {
+            if (piece->_movedTwo &&
+                model::Game::runningGame->getLastMovedPiece()->getPos() == piece->getPos()) {
+
                 piece->_markedForDeath = true;
                 return true;
             }

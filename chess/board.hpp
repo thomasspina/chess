@@ -13,7 +13,7 @@ namespace model
         Board();
         ~Board() = default;
 
-        std::unique_ptr<Piece>& getPiece(int col, int row) const;
+        const std::unique_ptr<Piece>& getPiece(int col, int row) const;
 
         void placePiece(int col, int row);
     private:
