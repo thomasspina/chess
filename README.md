@@ -1,2 +1,3 @@
-# chess-end_games
+# chess
+
 A chess emulator made in C++
