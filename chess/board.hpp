@@ -1,14 +1,16 @@
 #pragma once
 
-#include <memory>
+#include "piece.hpp"
 
+#include <memory>
+#include <QObject>
 
 namespace model
 {
-    class Piece;
-
-    class Board 
+    class Board : public QObject
     {
+        Q_OBJECT
+
     public:
         Board();
         ~Board() = default;
@@ -16,6 +18,9 @@ namespace model
         const std::unique_ptr<Piece>& getPiece(int col, int row) const;
 
         void placePiece(int col, int row);
+
+
+
     private:
         std::unique_ptr<Piece> _board[8][8];
     };

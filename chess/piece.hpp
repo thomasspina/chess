@@ -2,10 +2,10 @@
 
 #include <utility>
 
-#include "board.hpp"
-
 namespace model 
 {
+    class Board;
+
     enum class Colour 
     {
         WHITE,
@@ -30,4 +30,4 @@ namespace model
         std::pair<int, int> _currPos;
     };
 }
-    
+

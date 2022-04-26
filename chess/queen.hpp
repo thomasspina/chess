@@ -1,6 +1,7 @@
 #pragma once
 
 #include "piece.hpp"
+#include "board.hpp"
 #include "bishop.hpp"
 #include "rook.hpp"
 

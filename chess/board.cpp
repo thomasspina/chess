@@ -1,5 +1,5 @@
 #include "board.hpp"
-#include "king.hpp"
+#include "piece.hpp"
 
 
 model::Board::Board() {}

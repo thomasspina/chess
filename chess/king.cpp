@@ -1,5 +1,7 @@
 #include "king.hpp"
 
+#include <memory>
+
 int model::King::kingCounter = 0;
 
 

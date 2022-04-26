@@ -1,6 +1,7 @@
-#include <memory>
-
 #include "piece.hpp"
+#include "board.hpp"
+
+#include <memory>
 
 
 model::Piece::Piece(const Colour& colour, const std::pair<int, int>& pos) : _colour(colour), _currPos(pos) {}

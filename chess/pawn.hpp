@@ -1,4 +1,7 @@
+#pragma once
+
 #include "piece.hpp"
+#include "board.hpp"
 
 namespace model
 {

@@ -11,6 +11,7 @@ CONFIG += c++17
 SOURCES += \
     bishop.cpp \
     board.cpp \
+    boardcase.cpp \
     game.cpp \
     king.cpp \
     knight.cpp \
@@ -25,10 +26,11 @@ SOURCES += \
 HEADERS += \
     bishop.hpp \
     board.hpp \
+    boardcase.hpp \
     game.hpp \
     king.hpp \
     knight.hpp \
-    mainwindow.h \
+    mainwindow.hpp \
     pawn.hpp \
     piece.hpp \
     queen.hpp \
