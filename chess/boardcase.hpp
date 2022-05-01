@@ -2,15 +2,21 @@
 
 #include <QObject>
 #include <QGraphicsRectItem>
+#include <QColor>
 
 namespace view
 {
+    struct Colour {
+        static const QColor White;
+        static const QColor Black;
+    };
+
     class BoardCase : public QObject, public QGraphicsRectItem
     {
         Q_OBJECT
 
     public:
-        BoardCase(int x, int y, int i, int j);
+        BoardCase(int x, int y, int h, int w);
         ~BoardCase() = default;
 
     private:
