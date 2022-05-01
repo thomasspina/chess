@@ -1,6 +1,5 @@
 #pragma once
 
-#include <QObject>
 #include <QGraphicsRectItem>
 #include <QColor>
 
@@ -11,12 +10,10 @@ namespace view
         static const QColor Black;
     };
 
-    class BoardCase : public QObject, public QGraphicsRectItem
+    class BoardCase : public QGraphicsRectItem
     {
-        Q_OBJECT
-
     public:
-        BoardCase(int x, int y, int h, int w);
+        BoardCase(int x, int y, int h, int w, QGraphicsItem* parent = nullptr);
         ~BoardCase() = default;
 
     private:
@@ -24,9 +21,8 @@ namespace view
         int _height;
         int _width;
 
-    public slots:
-        // piece is hovering over?
-    signals:
-        // piece has been dropped
+    protected:
+        void dropEvent(QGraphicsSceneDragDropEvent* event) override;
+        void mousePressEvent(QGraphicsSceneMouseEvent* event) override;
     };
 }
