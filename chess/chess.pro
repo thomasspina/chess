@@ -21,7 +21,8 @@ SOURCES += \
     piece.cpp \
     queen.cpp \
     rook.cpp \
-    tempPiece.cpp
+    tempPiece.cpp \
+    uipiece.cpp
 
 HEADERS += \
     bishop.hpp \
@@ -35,7 +36,8 @@ HEADERS += \
     piece.hpp \
     queen.hpp \
     rook.hpp \
-    tempPiece.hpp
+    tempPiece.hpp \
+    uipiece.hpp
 
 FORMS += \
     mainwindow.ui
